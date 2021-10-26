@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    Homework 1 Submission
+    Name: Acosta Jan Jacob Domalanta
+    Admin No: P2026271
+    Class: DIT/2B03
+
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Homework1</title>
+</head>
+
+<body>
+    <p>Time when page was loaded: <span id="timenow"></span></p>
+
+    <form>
+        <h4>Square Calculator</h4>
+        <p>This input field will square any value inputted.</p>
+        <input type="text" id="squareInput">
+        <input type="button" id="squareSubmit" value="Submit">
+        <p>Output: <span id='squareOutput' style="color: blue;"></span></p>
+    </form>
+    <form>
+        <h4>Cube Calculator</h4>
+        <p>This input field will square any value inputted.</p>
+        <input type="text" id="cubeInput">
+        <input type="button" id="cubeSubmit" value="Submit">
+        <p>Output: <span id='cubeOutput' style="color: blue;"></span></p>
+    </form>
+
+    <script>
+        $(document).ready(() => {
+            $.ajax({
+                method: "GET",
+                url: 'http://localhost:3000/timenow',
+                success: function (data, status, xhr) {
+                    $("#timenow").append(data);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $("#timenow").append("Something broke!");
+                }
+            })
+
+            $("#squareSubmit").on('click', () => {
+
+                var inputtedValue = $('#squareInput').val();
+                console.log(inputtedValue);
+                $.ajax({
+                    method: "POST",
+                    url: 'http://localhost:3000/squareValue?value=' + inputtedValue,
+                    success: function (data, status, xhr) {
+                        $("#squareOutput").empty();
+                        $("#squareOutput").append(data.output);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        $("#squareOutput").empty();
+                        $("#squareOutput").append(xhr.responseJSON.errorMsg);
+                    }
+                })
+            })
+
+            $("#cubeSubmit").on('click', () => {
+
+                var inputtedValue = $('#cubeInput').val();
+                console.log(inputtedValue);
+                $.ajax({
+                    method: "POST",
+                    url: 'http://localhost:3000/cubeValue',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ value : inputtedValue}),
+                    success: function (data, status, xhr) {
+                        $("#cubeOutput").empty();
+                        $("#cubeOutput").append(data.output);
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        $("#cubeOutput").empty();
+                        $("#cubeOutput").append(xhr.responseJSON.errorMsg);
+                    }
+                })
+            })
+
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>
