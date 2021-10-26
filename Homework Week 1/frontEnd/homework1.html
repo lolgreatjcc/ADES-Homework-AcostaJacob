@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Homework1</title>
+    <title>Homework 1</title>
 </head>
 
 <body>
@@ -31,6 +31,7 @@
         <p>This input field will square any value inputted.</p>
         <input type="text" id="cubeInput">
         <input type="button" id="cubeSubmit" value="Submit">
+        <p>Note: See the disabled input field above.</p>
         <p>Output: <span id='cubeOutput' style="color: blue;"></span></p>
     </form>
 
@@ -48,17 +49,22 @@
             })
 
             $("#squareSubmit").on('click', () => {
-
+                $('#squareInput').prop("disabled", true);
+                $("#squareSubmit").prop("disabled", true);
                 var inputtedValue = $('#squareInput').val();
                 console.log(inputtedValue);
                 $.ajax({
                     method: "POST",
                     url: 'http://localhost:3000/squareValue?value=' + inputtedValue,
                     success: function (data, status, xhr) {
+                        $("#squareSubmit").prop("disabled", false);
+                        $("#squareInput").prop("disabled", false);
                         $("#squareOutput").empty();
                         $("#squareOutput").append(data.output);
                     },
                     error: function (xhr, textStatus, errorThrown) {
+                        $("#squareSubmit").prop("disabled", false);
+                        $("#squareInput").prop("disabled", false);
                         $("#squareOutput").empty();
                         $("#squareOutput").append(xhr.responseJSON.errorMsg);
                     }
@@ -66,9 +72,10 @@
             })
 
             $("#cubeSubmit").on('click', () => {
-
+                $('#cubeInput').prop("disabled",true);
+                $("#cubeSubmit").prop("disabled",true);
                 var inputtedValue = $('#cubeInput').val();
-                console.log(inputtedValue);
+                
                 $.ajax({
                     method: "POST",
                     url: 'http://localhost:3000/cubeValue',
@@ -76,10 +83,14 @@
                     contentType: 'application/json',
                     data: JSON.stringify({ value : inputtedValue}),
                     success: function (data, status, xhr) {
+                        $('#cubeSubmit').prop("disabled", false);
+                        $('#cubeInput').prop("disabled", false);
                         $("#cubeOutput").empty();
                         $("#cubeOutput").append(data.output);
                     },
                     error: function (xhr, textStatus, errorThrown) {
+                        $("#cubeSubmit").prop("disabled", false);
+                        $('#cubeInput').prop("disabled", false);
                         $("#cubeOutput").empty();
                         $("#cubeOutput").append(xhr.responseJSON.errorMsg);
                     }

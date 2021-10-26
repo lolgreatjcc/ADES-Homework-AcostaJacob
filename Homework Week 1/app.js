@@ -34,26 +34,31 @@ app.get("/timenow", function (req, res) {
 
 app.post("/squareValue", function (req, res) {
     var value = req.query.value;
-    if (isNaN(value)) {
-        res.status(500).send({ "errorMsg": "Please input a number." })
-    }
-    else {
-        var output = value * value;
-        res.status(200).send({ "output": output + "" });
-    }
+    setTimeout(() => {
+        if (isNaN(value)) {
+            res.status(500).send({ "errorMsg": "Please input a number." })
+        }
+        else {
+            var output = value * value;
+            res.status(200).send({ "output": output + "" });
+        }
+    }, 1000);
+
 
 })
 
 app.post("/cubeValue", function (req, res) {
     var value = req.body.value;
-    console.log(req.body);
-    if (isNaN(value)) {
-        res.status(500).send({ "errorMsg": "Please input a number." })
-    }
-    else {
-        var output = value * value * value;
-        res.status(200).send({ "output": output + "" });
-    }
+    setTimeout(() => {
+        if (isNaN(value)) {
+            res.status(500).send({ "errorMsg": "Please input a number." })
+        }
+        else {
+            var output = value * value * value;
+            res.status(200).send({ "output": output + "" });
+        }  
+    }, 1000);
+
 })
 
 app.use(function (req, res, next) {
