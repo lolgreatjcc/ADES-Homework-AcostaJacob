@@ -12,11 +12,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../includeHTML/head.js"></script>
+    <script src="../../includeHTML/header.js"></script>
+
+
     <title>Homework 1</title>
 </head>
 
 <body>
+    <div class="container md-my-2">
+        <div class="body-borders bg-white shadow-sm p-2 rounded mt-3">
+
     <p>Time when page was loaded: <span id="timenow"></span></p>
 
     <form>
@@ -34,7 +42,8 @@
         <p>Note: See the disabled input field above.</p>
         <p>Output: <span id='cubeOutput' style="color: blue;"></span></p>
     </form>
-
+    </div>
+</div>
     <script>
         $(document).ready(() => {
             $.ajax({
@@ -63,6 +72,7 @@
                         $("#squareOutput").append(data.output);
                     },
                     error: function (xhr, textStatus, errorThrown) {
+                        console.log(xhr);
                         $("#squareSubmit").prop("disabled", false);
                         $("#squareInput").prop("disabled", false);
                         $("#squareOutput").empty();

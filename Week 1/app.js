@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 
 function logRequests(req,res,next) {
     // Logs the original path
-    //console.log(req);
+    console.log(req);
 
     // Logs the request path.
     //console.log(req.path)
