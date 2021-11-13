@@ -84,13 +84,13 @@ To begin let's go to the backend app. Technically we can also choose the fronten
 
 	*	Afterwards, you will see the *ClearDB MySQL* under the Add-ons section.
 4. Next, we need to retrieve our ClearDB credentials, go to the settings tab.
-	*	Specifically we're going to need the database hostname, usernameand password to connect to our cloud database.
+	*	Specifically we're going to need the database hostname, username and password to connect to our cloud database.
 5. Scroll down till you find the *Config Vars* section, then click on the *Reveal Config Vars* button.
 
 	![image](https://user-images.githubusercontent.com/87067973/141652773-8b1eb037-d730-4215-a083-2a339e98ae07.png)
 
-	* mysql:/**/b7ae6c8a4557d4**:**817375f8@us-cdbr-east-04.cleardb.com**/**heroku_2230e5a57d0e906**?reconnect=true
-	* You'll find a string that looks similar to the one above. The first bolded part indicates the username, second one indates the password, and the last one indicates the database hostname.
+	* mysql:/**/b7ae6c8a4557d4**:**817375f8@us-cdbr-east-04.cleardb.com**/heroku_2230e5a57d0e906?reconnect=true
+	* You'll find a string that looks similar to the one above. The first bolded part indicates the username, second one indicates the password, and the last one indicates the database hostname. (i.e. b7ae6c8a4557d4 is the username, 817375f8 is the password, us-cdbr-east-04.cleardb.com is the hostname )
 	* This is important because these are the credentials that we need to input to our database configs in our backend.
 
 ### 5. Procfiles
