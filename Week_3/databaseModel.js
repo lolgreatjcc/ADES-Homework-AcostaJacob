@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit: 10,
-    host: 'localhost',
-    user: 'root',
-    password: 'FrozenLava123',
-    database: 'ades_hw'
+    host: 'us-cdbr-east-04.cleardb.com',
+    user: 'b7ae6c8a4557d4',
+    password: '817375f',
+    database: 'heroku_2230e5a57d0e906'
 });
 
 module.exports = pool;
