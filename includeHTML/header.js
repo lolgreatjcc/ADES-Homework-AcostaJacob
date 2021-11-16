@@ -9,7 +9,7 @@ $(document).ready(() => {
     <div class=" container-fluid">
         <a class="navbar-brand" href="#">
             <img src="../../includeHTML/assets/index.jpg" alt="" width="30" height="30" class="d-inline-block align-text-top me-1">
-            Jacob's Homeworks: Homework 2
+            Jacob's Homeworks: To - Do List
         </a>
     </div>
 </nav>

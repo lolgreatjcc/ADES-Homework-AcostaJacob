@@ -17,6 +17,7 @@
     <script src="../../includeHTML/head.js"></script>
     <script src="../../includeHTML/header.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <title>Homework 1</title>
 </head>
@@ -46,16 +47,22 @@
 </div>
     <script>
         $(document).ready(() => {
-            $.ajax({
-                method: "GET",
-                url: 'http://localhost:3000/timenow',
-                success: function (data, status, xhr) {
-                    $("#timenow").append(data);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    $("#timenow").append("Something broke!");
-                }
-            })
+            axios.get('http://localhost:3002/timenow')
+            .then(function (res) {
+                $('#timenow').append(res.data);
+            }).catch(function (err) {
+                $('#timenow').append("Something broke!");
+            });
+            // $.ajax({
+            //     method: "GET",
+            //     url: 'http://localhost:3002/timenow',
+            //     success: function (data, status, xhr) {
+            //         $("#timenow").append(data);
+            //     },
+            //     error: function (xhr, textStatus, errorThrown) {
+            //         $("#timenow").append("Something broke!");
+            //     }
+            // })
 
             $("#squareSubmit").on('click', () => {
                 $('#squareInput').prop("disabled", true);
@@ -64,7 +71,7 @@
                 console.log(inputtedValue);
                 $.ajax({
                     method: "POST",
-                    url: 'http://localhost:3000/squareValue?value=' + inputtedValue,
+                    url: 'http://localhost:3002/squareValue?value=' + inputtedValue,
                     success: function (data, status, xhr) {
                         $("#squareSubmit").prop("disabled", false);
                         $("#squareInput").prop("disabled", false);
@@ -88,7 +95,7 @@
                 
                 $.ajax({
                     method: "POST",
-                    url: 'http://localhost:3000/cubeValue',
+                    url: 'http://localhost:3002/cubeValue',
                     dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify({ value : inputtedValue}),
