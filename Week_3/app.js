@@ -91,6 +91,7 @@ app.use(function (req, res, next) {
     res.status(404).send({ "ErrorMsg": "Resouce not found!"});
 })
 
-app.listen(port, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT,() => {
     console.log(`Homework 2 App listening at http://localhost:${port}`);
 })
